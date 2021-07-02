@@ -1,53 +1,95 @@
 #pragma once
 #include <iostream>
+using std::cout, std::cin, std::endl;
 class Tree
 {
-public:
-	class node {
-	public:
-		node* left, * right;
-		char data;
-		node(char e) {
-			data = e;
-			left = right = nullptr;
-		}
-	};
-	Tree();
-	~Tree();
-	void CreateTree(node* r);
-	int getDepth();
-	void destory();
-
 private:
-	class node {
-	public:
-		node* left, * right;
+	typedef struct Node {
 		char data;
-		node(char e) {
+		Node* left, * right;
+		Node(char e)
+		{
 			data = e;
 			left = right = nullptr;
 		}
-	};
-	node* root;
+	}*BTree;
+	BTree root = new Node('r');
+	void Create(BTree& t);
+public:
+	void CreateTree();
+	~Tree();
+	Tree();
+	void InOrderTraverse(BTree t);
+	void PreOrderTraverse(BTree t);
+	void PostOrderTraverse(BTree t);
+	void Pre();
+	void Post();
+	void In();
+	int Depth();
+	int getDepth(BTree t);
 };
-
-Tree::Tree()
+void Tree::CreateTree()
 {
-	root->left = root->right = nullptr;
+	Create(root);
 }
-
-Tree::~Tree()
+inline Tree::~Tree()
 {
 }
-
-void Tree::CreateTree(node* r)
+inline Tree::Tree()
+{
+}
+inline void Tree::InOrderTraverse(BTree t)
+{
+	if (t == nullptr) return;
+	InOrderTraverse(t->left);
+	std::cout << t->data << " ";
+	InOrderTraverse(t->right);
+}
+inline void Tree::PreOrderTraverse(BTree t)
+{
+	cout << t->data << " ";
+	PreOrderTraverse(t->left);
+	PreOrderTraverse(t->right);
+}
+inline void Tree::PostOrderTraverse(BTree t)
+{
+	PostOrderTraverse(t->left);
+	PostOrderTraverse(t->right);
+	cout << t->data << " ";
+}
+inline void Tree::Pre()
+{
+	cout << "前序遍历为：" << endl;
+	PreOrderTraverse(root);
+}
+inline void Tree::Post()
+{
+	cout << "后序遍历为：" << endl;
+	PostOrderTraverse(root);
+}
+inline void Tree::In()
+{
+	cout << "中序遍历为：" << endl;
+	InOrderTraverse(root);
+}
+inline int Tree::Depth()
+{
+	return getDepth(root);
+}
+inline int Tree::getDepth(BTree t)
+{
+	if (t == nullptr)
+		return 0;
+	return std::max(getDepth(t->left), getDepth(t->right)) + 1;
+}
+inline void Tree::Create(BTree& t)
 {
 	char c;
-	std::cin >> c;
-	if (c == '#') r = nullptr;
+	cin >> c;
+	if (c == '#') return;
 	else {
-		auto t = new node{ c };
-		CreateTree(t->left);
-		CreateTree(t->right);
+		t = new Node(c);
+		Create(t->left);
+		Create(t->right);
 	}
 }
