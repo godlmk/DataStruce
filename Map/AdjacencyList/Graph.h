@@ -97,13 +97,12 @@ public:
 				}
 			isPath[minI] = true;
 			for (const auto& x : adj[minI])
-			
+
 				if (!isPath[x.first] && distance[minI] + x.second < distance[x.first])
 				{
 					distance[x.first] = distance[minI] + x.second;
 					Path[x.first] = minI;
 				}
-			
 		}
 		return Path;
 	}

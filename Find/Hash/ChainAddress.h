@@ -2,6 +2,7 @@
 #include <vector>
 #include <cmath>
 #include <unordered_map>
+using std::cout, std::endl;
 class ChainHash
 {
 private:
@@ -15,10 +16,15 @@ private:
 public:
 	ChainHash();
 	~ChainHash();
+	//以n为数组大小构建哈希表
 	ChainHash(int n);
+	//插入一个数据，若已经存在
 	void Insert(int x);
+	//在表中查找x，若存在就返回它的前一个结点指针，若不存在则返回nullptr
 	Node* Find(int x);
+
 	bool Delete(int x);
+	void print();
 private:
 	std::vector<Node> h;
 	int N = 2;
@@ -61,6 +67,21 @@ bool ChainHash::Delete(int x) {
 		return true;
 	}
 	return false;
+}
+
+inline void ChainHash::print()
+{
+	printf("除数为%d\n", N);
+	auto i{ 0 };
+	for (const auto& x : h) {
+		printf("第%d个位置的元素：", i++);
+		auto p = x.next;
+		while (p) {
+			cout << p->data << " ";
+			p = p->next;
+		}
+		cout << endl;
+	}
 }
 
 bool ChainHash::IsPrime(int n)
