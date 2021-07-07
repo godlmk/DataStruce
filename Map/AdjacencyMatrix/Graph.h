@@ -88,6 +88,28 @@ public:
 			}
 		}
 	}
+	void Kruskal() {
+		struct Edge
+		{
+			int from, des, weight;
+			Edge(int a, int b, int c) : from{ a }, des{ b }, weight{ c }{}
+		};
+		vector<Edge> E;
+		vector<int> Vexset(V);
+		for (int i = 0; i < V; ++i) Vexset[i] = i;
+		for (int i = 0; i < V; ++i)
+			for (int j = 0; j < V; ++j)
+				E.emplace_back(Edge{ i, j,adj[i][j] });
+		sort(E.begin(), E.end(), [](auto a, auto b) {return a.weight < b.weight; });
+		for (int i = 0; i < V; ++i) {
+			auto v1 = E[i].from, v2 = E[i].des;
+			if (Vexset[v1] != Vexset[v2]) {
+				cout << v1 << " " << v2 << endl;
+				for (int j = 0; j < V; ++j)
+					if (Vexset[j] == Vexset[v2]) Vexset[j] = Vexset[v1];
+			}
+		}
+	}
 	vector<int> Dijkstra(int u)
 	{
 		/*

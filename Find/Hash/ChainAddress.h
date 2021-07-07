@@ -22,8 +22,9 @@ public:
 	void Insert(int x);
 	//在表中查找x，若存在就返回它的前一个结点指针，若不存在则返回nullptr
 	Node* Find(int x);
-
+	//在表中删除值为x的元素
 	bool Delete(int x);
+	//打印整个表的所有元素
 	void print();
 private:
 	std::vector<Node> h;
