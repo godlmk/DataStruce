@@ -15,7 +15,7 @@ private:
 			height = 0;
 		}
 	};
-	Node* root;
+	Node* root{ nullptr };
 public:
 	AVL();
 	~AVL();
@@ -27,12 +27,14 @@ public:
 	Node* Insert(Node* t, int e);
 	void Insert(int e);
 	void PreOrder(Node* t);
-	auto getRoot();
+	void PreOrderTraverse();
+	void InorderTraverse(Node* t);
+	void InorderTraverse();
 };
 
 AVL::AVL()
 {
-	Node* root = nullptr;
+	root = nullptr;
 }
 int AVL::height(Node* t)
 {
@@ -47,9 +49,21 @@ void AVL::PreOrder(Node* t) {
 	}
 	return;
 }
-inline auto AVL::getRoot()
+void AVL::PreOrderTraverse() {
+	std::cout << " 先序遍历为：" << std::endl;
+	PreOrder(root);
+}
+inline void AVL::InorderTraverse(Node* t)
 {
-	return root;
+	if (!t) return;
+	InorderTraverse(t->left);
+	std::cout << t->data << " ";
+	InorderTraverse(t->right);
+}
+inline void AVL::InorderTraverse()
+{
+	std::cout << "\n中序遍历为：" << std::endl;
+	InorderTraverse(root);
 }
 AVL::Node* AVL::LL(Node* t) {
 	auto p = t->left;

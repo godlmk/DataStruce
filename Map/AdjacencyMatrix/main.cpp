@@ -6,7 +6,7 @@ int main()
 {
 	const string filename1 = "有向连通图.txt", filename2 = "无向连通图.txt",
 		filename3 = "拓扑排序.txt";
-	Graph G(filename2);
+	Graph G(filename1);
 	puts("图的邻接矩阵表示如下：");
 	G.print();
 	if (!G.isDircete())
