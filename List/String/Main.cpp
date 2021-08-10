@@ -3,13 +3,16 @@
 #include <vector>
 using namespace std;
 auto getNext(const vector<char>& t) {
+	//不希望多占用一个数组空间，所以我们让 -1成为没有一个匹配的标志位
 	vector<int> ne(t.size(), -1);
 	int i = 0, j = -1;
 	while (i < t.size() - 1) {
 		if (j == -1 || t[i] == t[j]) {
+			//若j == -1，则则证明第一个字符就不匹配，这时需要把i往后移动一位，而j从第一位开始
 			++i, ++j;
 			ne[i] = j;
 		}
+		//若不匹配的话，则j往前移动
 		else j = ne[j];
 	}
 	return ne;

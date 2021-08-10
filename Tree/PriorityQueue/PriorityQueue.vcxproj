@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{d1caf850-2217-4849-9934-4e41605b844c}</ProjectGuid>
-    <RootNamespace>LinkedList</RootNamespace>
+    <ProjectGuid>{ffab3ef6-fd0d-4f05-96ca-4931f48f4e88}</ProjectGuid>
+    <RootNamespace>PriorityQueue</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,7 +139,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="LinkedList.cpp" />
+    <ClInclude Include="PriorityQueue.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="PriorityQueue.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

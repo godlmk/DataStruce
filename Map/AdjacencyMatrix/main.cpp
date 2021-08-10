@@ -12,7 +12,7 @@ int main()
 	if (!G.isDircete())
 	{
 		cout << "最小生成树为：\n";
-		G.prim(0);
+		G.Kruskal();
 	}
 	else
 	{
